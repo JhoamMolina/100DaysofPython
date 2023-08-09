@@ -38,21 +38,21 @@
 
 # print(f"You have {days} days, {weeks} weeks, and {months} months left.")
 
-print("Welcome to the tip calculator.")
-bill_cost = input("What was the total bill? $")
-percentage_tip = input(
-    "What percentage tip would you like to give? 10, 12, or 15? ")
-people = input("How many people to split the bill? ")
+# print("Welcome to the tip calculator.")
+# bill_cost = input("What was the total bill? $")
+# percentage_tip = input(
+#     "What percentage tip would you like to give? 10, 12, or 15? ")
+# people = input("How many people to split the bill? ")
 
-bill_cost_as_float = float(bill_cost)
+# bill_cost_as_float = float(bill_cost)
 
-total_bill = bill_cost_as_float + \
-    (bill_cost_as_float * (int(percentage_tip) / 100))
+# total_bill = bill_cost_as_float + \
+#     (bill_cost_as_float * (int(percentage_tip) / 100))
 
-total_pay_per_person = total_bill / int(people)
+# total_pay_per_person = total_bill / int(people)
 
-total_pay_per_person_rounded = round(total_pay_per_person, 2)
+# total_pay_per_person_rounded = round(total_pay_per_person, 2)
 
-final_amount = "{:.2f}".format(total_pay_per_person)
+# final_amount = "{:.2f}".format(total_pay_per_person)
 
-print(f"Each person should pay: {final_amount}")
+# print(f"Each person should pay: {final_amount}")
