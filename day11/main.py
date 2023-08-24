@@ -43,11 +43,7 @@ def get_card_from_deck(deck):
 
 
 def sum_current_cards(cards):
-    sum_of_cards = 0
-    for card in cards:
-        sum_of_cards += card
-
-    return sum_of_cards
+    return sum(cards)
 
 
 def computer_final_hand(cards):
