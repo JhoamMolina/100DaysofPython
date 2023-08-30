@@ -1,62 +1,62 @@
-from art import logo, vs
-from game_data import data
-from random import choice
+# higher Lovwer game
+import random
 
 
-def print_a_choice(instagram_profile, A_or_B):
-    name = instagram_profile["name"]
-    description = instagram_profile["description"]
-    country = instagram_profile["country"]
-    if (A_or_B == "Compare"):
-        print(
-            f"Compare {A_or_B}: {name}, a {description}, from {country}")
+def welcome_message():
+    print("Welcome to the Number Guessing Game!")
+    print("I'm thinking of a number between 1 and 100.")
+
+
+def get_game_mode(easy_count: int, hard_count: int):
+    game_mode = input("Choose a difficulty. Type 'easy' or 'hard': ").lower()
+    if game_mode not in ["easy", "hard"]:
+        print("Insert a valid option")
+        exit()
+    elif game_mode == "easy":
+        return easy_count
+
     else:
-        print(
-            f"Against {A_or_B}: {name}, a {description}, from {country}")
+        return hard_count
 
 
-def compare_function(choice1, choice2):
-    return choice1["follower_count"] > choice2["follower_count"]
+def get_guess():
+    return int(input("Make a guess: "))
 
 
-def print_versus_info(first_choice, second_choice):
-    print_a_choice(first_choice, "A")
-    print(vs)
-    print_a_choice(second_choice, "B")
+def check_guess(num_choice, random_number):
+    if num_choice > random_number:
+        return "Too high.", False
+    elif num_choice < random_number:
+        return "Too low.", False
+    else:
+        return f"You got it! 🎉🎊, The answer was {random_number}.", True
 
 
 def main():
-    score = 0
-    first_choice = choice(data)
-    second_choice = choice(data)
-    # Ensure first_choice and second_choice are different
-    while first_choice == second_choice:
-        second_choice = choice(data)
+    easy_count = 10
+    hard_count = 5
 
-    game_over = False
-    while not game_over:
-        print_versus_info(first_choice, second_choice)
-        user_choice = input(
-            "Who has more followers? Type 'A' or 'B': ").lower()
-        if user_choice == "a":
-            user_choice = first_choice
-            other_choice = second_choice
-        else:
-            user_choice = second_choice
-            other_choice = first_choice
+    welcome_message()
+    attempts_remaining = get_game_mode(easy_count, hard_count)
 
-        if compare_function(user_choice, other_choice):
-            score += 1
-            print(f"You are right, score: {score}")
-            first_choice = user_choice
-            second_choice = choice(data)
-            while first_choice == second_choice:
-                second_choice = choice(data)
-        else:
-            print("you lose")
-            game_over = True
+    print(
+        f"You have {attempts_remaining} attempts remaining to guess the number.")
+    random_number = random.randint(1, 100)
+
+    while attempts_remaining > 0:
+        print("Guess again")
+        num_choice = get_guess()
+        message, is_correct = check_guess(num_choice, random_number)
+        print(message)
+
+        if is_correct:
+            break
+
+        attempts_remaining -= 1
+
+    if attempts_remaining == 0:
+        print("You've run out of guesse, you lose.")
 
 
 if __name__ == "__main__":
-    print(logo)
     main()
